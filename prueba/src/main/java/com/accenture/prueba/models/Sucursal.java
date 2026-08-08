@@ -1,16 +1,11 @@
 package com.accenture.prueba.models;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 
@@ -26,10 +21,7 @@ public class Sucursal {
 
     @ManyToOne
     @JoinColumn(name = "id_franquicia")
-    private Franquicia franquicia;
-
-    @OneToMany(mappedBy = "sucursal", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Producto> productos = new ArrayList<>();
+    private Franquicia franquicia;   
 
     public Long getId() {
         return id;
@@ -69,16 +61,6 @@ public class Sucursal {
 
     public void setFranquicia(Franquicia franquicia) {
         this.franquicia = franquicia;
-    }
-
-    public List<Producto> getProductos() {
-        return productos;
-    }
-
-    public void setProductos(List<Producto> productos) {
-        this.productos = productos;
-    }
-
-    
+    }    
 
 }

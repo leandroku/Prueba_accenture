@@ -1,14 +1,9 @@
 package com.accenture.prueba.models;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -20,9 +15,6 @@ public class Franquicia {
     private String nombre;
     private String descripcion;
     private Boolean indActivo;
-
-    @OneToMany(mappedBy = "franquicia", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Sucursal> sucursales = new ArrayList<>();
 
     public Long getId() {
         return id;
@@ -55,14 +47,5 @@ public class Franquicia {
     public void setIndActivo(Boolean indActivo) {
         this.indActivo = indActivo;
     }
-
-    public List<Sucursal> getSucursales() {
-        return sucursales;
-    }
-
-    public void setSucursales(List<Sucursal> sucursales) {
-        this.sucursales = sucursales;
-    }
-
 
 }

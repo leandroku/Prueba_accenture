@@ -79,7 +79,6 @@ public class Producto {
     public void setSucursal(Sucursal sucursal) {
         this.sucursal = sucursal;
     }
-
     
 
 }
