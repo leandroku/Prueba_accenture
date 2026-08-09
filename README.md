@@ -19,19 +19,19 @@ Expone endpoints para gestionar productos, sucursales y franquicias.
 El proyecto utiliza un archivo `application.properties` para definir la configuración:
 
 ```properties
-spring.application.name=prueba
 server.port=4000
-
-spring.datasource.url=jdbc:mysql://<host>:3306/<database>
-spring.datasource.username=<usuario>
-spring.datasource.password=<contraseña>
+spring.datasource.url=jdbc:mysql://${DB_HOST}:${DB_PORT}/${DB_NAME}
+spring.datasource.username=${DB_USERNAME}
+spring.datasource.password=${DB_PASSWORD}
 spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
-
 spring.jpa.hibernate.ddl-auto=none
 spring.jpa.database-platform=org.hibernate.dialect.MySQLDialect
 spring.jpa.show-sql=true
 ```
-## Instalación y ejecución en local este fuera del recuadro
+## Instalación con Docker
+antes de iniciar se deven de remplazar las variables del docker-compose.yml -> environment  por las credenciales envialdas en el archivo txt;
+una vez remplazadas las variables en el docker-compose.yml se debe ejecurtar el sigueinte comendo sobre la carpeta prueba  
+**docker compose up --build**
 
 ## Pruebas de Endpoints
 Una vez que la aplicación esté corriendo en local (por defecto en el puerto **4000**), puedes probar los endpoints usando **Postman**
