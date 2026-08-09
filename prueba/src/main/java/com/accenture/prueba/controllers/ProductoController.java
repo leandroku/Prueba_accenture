@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import reactor.core.publisher.Flux;
 
@@ -35,7 +36,7 @@ public class ProductoController {
         return productoService.getAllProductos();
     }
 
-    @RequestMapping(value = "/createProducto", method = RequestMethod.POST)
+    @PostMapping()
     @ResponseBody
     public Producto createProducto(@RequestBody ProductoDTO productoDTO) {
         return productoService.crearProducto(productoDTO);
