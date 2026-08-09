@@ -12,6 +12,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
@@ -27,7 +28,7 @@ public class FranquiciaController {
         this.franquiciaService = franquiciaService;
     }
 
-    @GetMapping("/all")
+    @GetMapping()
     public List<Franquicia> getAllFranquicias() {
         return franquiciaService.obtenerFranquicias();
     }
@@ -37,7 +38,7 @@ public class FranquiciaController {
         return franquiciaService.crearFranquicia(franquicia);
     }
 
-    @RequestMapping(value = "/updateNombreFranquicia", method = RequestMethod.PUT)
+    @PatchMapping("/updateNombreFranquicia")
     @ResponseBody
     public String updateNombreFranquicia(@RequestBody Map<String, String> params) {
         return franquiciaService.actualizarNombreFranquicia(params);

@@ -3,10 +3,13 @@ package com.accenture.prueba.services.Itf;
 import java.util.List;
 import java.util.Map;
 
+import com.accenture.prueba.DTO.ProductoDTO;
 import com.accenture.prueba.models.Producto;
 
+import reactor.core.publisher.Flux;
+
 public interface ProductoService {
-    List<Producto> getAllProductos();
+    Flux<ProductoDTO> getAllProductos();
     Producto crearProducto(Map<String, String> params);
     boolean eliminarProducto(Long id);
     String actualizarStockProducto(Map<String, String> params);

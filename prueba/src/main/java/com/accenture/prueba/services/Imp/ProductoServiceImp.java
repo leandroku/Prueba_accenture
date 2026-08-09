@@ -8,13 +8,14 @@ import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.accenture.prueba.DAO.Imp.ProductoDAOImp;
-import com.accenture.prueba.DAO.Imp.SucursalDAOImp;
+import com.accenture.prueba.DTO.ProductoDTO;
 import com.accenture.prueba.models.Producto;
 import com.accenture.prueba.models.Sucursal;
 import com.accenture.prueba.repositories.ProductoRepository;
 import com.accenture.prueba.repositories.SucursalRepository;
 import com.accenture.prueba.services.Itf.ProductoService;
+
+import reactor.core.publisher.Flux;
 
 @Service
 public class ProductoServiceImp implements ProductoService {
@@ -25,15 +26,11 @@ public class ProductoServiceImp implements ProductoService {
     @Autowired
     private SucursalRepository sucursalRepository;
 
-    @Autowired
-    private SucursalDAOImp sucursalDAOImp;
-
-    @Autowired
-    private ProductoDAOImp productoDAOImp;
-
     @Override
-    public List<Producto> getAllProductos() {
-        return productoRepository.findAll();
+    public Flux<ProductoDTO> getAllProductos() {
+        List<Producto> productoList = productoRepository.findAll();
+        return Flux.fromIterable(productoList)
+                .map(ProductoDTO::new);
     }
 
     @Override
@@ -74,10 +71,10 @@ public class ProductoServiceImp implements ProductoService {
     @Override
     public List<Map<String, String>> getMaxStockProductoSucursal(Long id) {
         List<Map<String, String>> maxStockProductos = new ArrayList<>();
-        List<Sucursal> sucursalList = sucursalDAOImp.findByFranquiciaId(id);
+        List<Sucursal> sucursalList = sucursalRepository.findByFranquiciaId(id);
         if (sucursalList != null && !sucursalList.isEmpty()) {
             for(Sucursal sucursal : sucursalList){
-                List<Producto> productoList = productoDAOImp.findByMaxProducto(sucursal.getId());
+                List<Producto> productoList = productoRepository.findByMaxProducto(sucursal.getId());
                 if (productoList != null && !productoList.isEmpty()) {
                     int maxStrock = productoList.stream()
                     .mapToInt(Producto::getStock)

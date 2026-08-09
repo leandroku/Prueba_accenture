@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.accenture.prueba.DTO.ProductoDTO;
 import com.accenture.prueba.models.Producto;
 import com.accenture.prueba.services.Itf.ProductoService;
 
@@ -13,8 +14,10 @@ import java.util.Map;
 
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
+import reactor.core.publisher.Flux;
 
 
 
@@ -27,8 +30,8 @@ public class ProductoController {
         this.productoService = productoService;
     }
 
-    @GetMapping("/all")
-    public List<Producto> getAllProductos() {
+    @GetMapping()
+    public Flux<ProductoDTO> getAllProductos() {
         return productoService.getAllProductos();
     }
 
@@ -43,7 +46,7 @@ public class ProductoController {
         return productoService.eliminarProducto(id);
     }
 
-    @RequestMapping(value = "/updateStockProducto", method = RequestMethod.PUT)
+    @PatchMapping("/updateStockProducto")
     @ResponseBody
     public String updateStockProducto(@RequestBody Map<String, String> params) {
         return productoService.actualizarStockProducto(params);
@@ -54,7 +57,7 @@ public class ProductoController {
         return productoService.getMaxStockProductoSucursal(id);
     }
     
-        @RequestMapping(value = "/updateNombreProducto", method = RequestMethod.PUT)
+    @PatchMapping("/updateNombreProducto")
     @ResponseBody
     public String updateNombreProducto(@RequestBody Map<String, String> params) {
         return productoService.actualizarNombreProducto(params);

@@ -4,6 +4,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.accenture.prueba.DTO.SucursalDTO;
 import com.accenture.prueba.models.Sucursal;
 import com.accenture.prueba.services.Itf.SucursalService;
 
@@ -11,6 +12,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -25,8 +27,8 @@ public class SucursalController {
         this.sucursalService = sucursalService;
     }
 
-    @GetMapping("/all")
-    public List<Sucursal> getAllSucursales() {
+    @GetMapping()
+    public List<SucursalDTO> getAllSucursales() {
         return sucursalService.obtenerSucursales();
     }
 
@@ -37,7 +39,7 @@ public class SucursalController {
         return sucursalService.crearSucursal(params);
     }
 
-    @RequestMapping(value = "/updateNombreSucursal", method = RequestMethod.PUT)
+    @PatchMapping("/updateNombreSucursal")
     @ResponseBody
     public String updateNombreSucursal(@RequestBody Map<String, String> params) {
         return sucursalService.actualizarNombreSucursal(params);

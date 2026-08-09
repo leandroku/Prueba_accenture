@@ -6,6 +6,7 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.accenture.prueba.DTO.SucursalDTO;
 import com.accenture.prueba.models.Franquicia;
 import com.accenture.prueba.models.Sucursal;
 import com.accenture.prueba.repositories.FranquiciaRepository;
@@ -34,8 +35,11 @@ public class SucursalServiceImp implements SucursalService {
     }
 
     @Override
-    public List<Sucursal> obtenerSucursales() {
-        return sucursalRepository.findAll();
+    public List<SucursalDTO> obtenerSucursales() {
+        return sucursalRepository.findAll()
+                .stream()
+                .map(SucursalDTO::new)
+                .toList();
     }
 
     @Override
