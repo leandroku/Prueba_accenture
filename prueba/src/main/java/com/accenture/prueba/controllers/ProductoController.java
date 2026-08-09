@@ -37,19 +37,20 @@ public class ProductoController {
 
     @RequestMapping(value = "/createProducto", method = RequestMethod.POST)
     @ResponseBody
-    public Producto createProducto(@RequestBody Map<String, String> params) {
-        return productoService.crearProducto(params);
+    public Producto createProducto(@RequestBody ProductoDTO productoDTO) {
+        return productoService.crearProducto(productoDTO);
     }
 
     @DeleteMapping("/{id}")
+    @ResponseBody
     public boolean deleteProducto(@PathVariable Long id) {
         return productoService.eliminarProducto(id);
     }
 
-    @PatchMapping("/updateStockProducto")
+    @PatchMapping("/{id}/stock")
     @ResponseBody
-    public String updateStockProducto(@RequestBody Map<String, String> params) {
-        return productoService.actualizarStockProducto(params);
+    public String updateStockProducto(@PathVariable Long id,@RequestBody int nuevoStock) {
+        return productoService.actualizarStockProducto(id, nuevoStock);
     }
 
     @GetMapping("/MaxStockProductoSucursal/{id}")
@@ -57,10 +58,10 @@ public class ProductoController {
         return productoService.getMaxStockProductoSucursal(id);
     }
     
-    @PatchMapping("/updateNombreProducto")
+    @PatchMapping("/{id}/nombre")
     @ResponseBody
-    public String updateNombreProducto(@RequestBody Map<String, String> params) {
-        return productoService.actualizarNombreProducto(params);
+    public String updateNombreProducto(@PathVariable Long id, @RequestBody String nuevoNombre) {
+        return productoService.actualizarNombreProducto(id, nuevoNombre);
     }
 
 

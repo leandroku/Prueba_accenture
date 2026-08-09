@@ -13,6 +13,8 @@ import java.util.Map;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -31,18 +33,16 @@ public class SucursalController {
     public List<SucursalDTO> getAllSucursales() {
         return sucursalService.obtenerSucursales();
     }
-
-
-    @RequestMapping(value = "/createSucursal", method = RequestMethod.POST)
-    @ResponseBody
-    public Sucursal createSucursal(@RequestBody Map<String, String> params) {
-        return sucursalService.crearSucursal(params);
+        
+    @PostMapping()
+    public Sucursal createSucursal(@RequestBody SucursalDTO sucursalDTO) {
+        return sucursalService.crearSucursal(sucursalDTO);
     }
 
-    @PatchMapping("/updateNombreSucursal")
+    @PatchMapping("/{id}/nombre")
     @ResponseBody
-    public String updateNombreSucursal(@RequestBody Map<String, String> params) {
-        return sucursalService.actualizarNombreSucursal(params);
+    public String updateNombreSucursal(@PathVariable Long id, @RequestBody String nuevoNombre) {
+        return sucursalService.actualizarNombreSucursal(id, nuevoNombre);
     }
 
 

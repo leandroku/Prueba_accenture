@@ -34,15 +34,15 @@ public class ProductoServiceImp implements ProductoService {
     }
 
     @Override
-    public Producto crearProducto(Map<String, String> params) {
+    public Producto crearProducto(ProductoDTO productoDTO) {
         Producto producto = new Producto();
-        producto.setNombre(params.get("nombre"));
-        producto.setDescripcion(params.get("descripcion"));
-        producto.setPrecio(Double.parseDouble(params.get("precio")));
-        producto.setStock(Integer.parseInt(params.get("stock")));
-        producto.setIndActivo(Boolean.parseBoolean(params.get("indActivo")));
+        producto.setNombre(productoDTO.getNombre());
+        producto.setDescripcion(productoDTO.getDescripcion());
+        producto.setPrecio(productoDTO.getPrecio());
+        producto.setStock(productoDTO.getStock());
+        producto.setIndActivo(productoDTO.getIndActivo());
 
-        Sucursal sucursal = sucursalRepository.findById(Long.parseLong(params.get("sucursal"))).orElse(null);
+        Sucursal sucursal = sucursalRepository.findById(productoDTO.getIdSucursal()).orElse(null);
         producto.setSucursal(sucursal);
 
         return productoRepository.save(producto);
@@ -58,10 +58,10 @@ public class ProductoServiceImp implements ProductoService {
     }
 
     @Override
-    public String actualizarStockProducto(Map<String, String> params) {
-        Producto producto = productoRepository.findById(Long.parseLong(params.get("id"))).orElse(null);
+    public String actualizarStockProducto(Long id, int nuevoStock) {
+        Producto producto = productoRepository.findById(id).orElse(null);
         if (producto != null) {
-            producto.setStock(Integer.parseInt(params.get("stock")));
+            producto.setStock(nuevoStock);
             productoRepository.save(producto);
             return "Stock actualizado correctamente";
         }
@@ -100,13 +100,13 @@ public class ProductoServiceImp implements ProductoService {
     }
 
     @Override
-    public String actualizarNombreProducto(Map<String, String> params) {
-        Producto producto = productoRepository.findById(Long.parseLong(params.get("id"))).orElse(null);
+    public String actualizarNombreProducto(Long id, String nuevoNombre) {
+        Producto producto = productoRepository.findById(id).orElse(null);
         if ( producto != null) {
             String oldNombre = producto.getNombre();
-            producto.setNombre(params.get("nombre"));
+            producto.setNombre(nuevoNombre);
             productoRepository.save(producto);
-            return "se ha cambiado el nombre del producto "+ oldNombre + " a " + params.get("nombre") + "  correctamente";
+            return "se ha cambiado el nombre del producto "+ oldNombre + " a " + nuevoNombre + "  correctamente";
         }
         return "Error al actualizar el nombre, Producto no encontrado";
     }

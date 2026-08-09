@@ -23,12 +23,12 @@ public class SucursalServiceImp implements SucursalService {
     private FranquiciaRepository franquiciaRepository;
 
     @Override
-    public Sucursal crearSucursal(Map<String, String> params) {
+    public Sucursal crearSucursal(SucursalDTO sucursalDTO) {
         Sucursal sucursal = new Sucursal();
-        sucursal.setNombre(params.get("nombre"));
-        sucursal.setDescripcion(params.get("descripcion"));
-        sucursal.setIndActivo((params.get("indActivo").equalsIgnoreCase("true")) ? true : false);
-        Franquicia franquicia = franquiciaRepository.findById(Long.parseLong(params.get("franquicia")))
+        sucursal.setNombre(sucursalDTO.getNombre());
+        sucursal.setDescripcion(sucursalDTO.getDescripcion());
+        sucursal.setIndActivo(sucursalDTO.getIndActivo());
+        Franquicia franquicia = franquiciaRepository.findById(sucursalDTO.getIdFranquicia())
                 .orElseThrow(() -> new RuntimeException("Franquicia no encontrada"));
         sucursal.setFranquicia(franquicia);
         return sucursalRepository.save(sucursal);
@@ -43,13 +43,13 @@ public class SucursalServiceImp implements SucursalService {
     }
 
     @Override
-    public String actualizarNombreSucursal(Map<String, String> params) {
-        Sucursal sucursal = sucursalRepository.findById(Long.parseLong(params.get("id"))).orElse(null);
+    public String actualizarNombreSucursal(Long id, String nuevoNombre) {
+        Sucursal sucursal = sucursalRepository.findById(id).orElse(null);
         if ( sucursal != null) {
             String oldNombre = sucursal.getNombre();
-            sucursal.setNombre(params.get("nombre"));
+            sucursal.setNombre(nuevoNombre);
             sucursalRepository.save(sucursal);
-            return "se ha cambiado el nombre de la sucursal "+ oldNombre + " a " + params.get("nombre") + "  correctamente";
+            return "se ha cambiado el nombre de la sucursal "+ oldNombre + " a " + nuevoNombre + "  correctamente";
         }
         return "Error al actualizar el nombre, Sucursal no encontrada";
     }

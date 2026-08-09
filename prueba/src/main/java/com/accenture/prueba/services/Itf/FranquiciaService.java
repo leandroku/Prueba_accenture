@@ -8,5 +8,5 @@ import com.accenture.prueba.models.Franquicia;
 public interface FranquiciaService {
     Franquicia crearFranquicia(Franquicia franquicia);
     List<Franquicia> obtenerFranquicias();
-    String actualizarNombreFranquicia(Map<String, String> params);
+    String actualizarNombreFranquicia(Long id, String nuevoNombre);
 }

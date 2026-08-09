@@ -10,9 +10,9 @@ import reactor.core.publisher.Flux;
 
 public interface ProductoService {
     Flux<ProductoDTO> getAllProductos();
-    Producto crearProducto(Map<String, String> params);
+    Producto crearProducto(ProductoDTO productoDTO);
     boolean eliminarProducto(Long id);
-    String actualizarStockProducto(Map<String, String> params);
+    String actualizarStockProducto(Long id, int nuevoStock);
     List<Map<String,String>> getMaxStockProductoSucursal(Long id);
-    String actualizarNombreProducto(Map<String, String> params);
+    String actualizarNombreProducto(Long id, String nuevoNombre);
 }

@@ -27,13 +27,13 @@ public class FranquiciaServiceImp implements FranquiciaService {
     }
 
     @Override
-    public String actualizarNombreFranquicia(Map<String, String> params) {
-        Franquicia franquicia = franquiciaRepository.findById(Long.parseLong(params.get("id"))).orElse(null);
+    public String actualizarNombreFranquicia(Long id, String nuevoNombre) {
+        Franquicia franquicia = franquiciaRepository.findById(id).orElse(null);
         if ( franquicia != null) {
             String oldNombre = franquicia.getNombre();
-            franquicia.setNombre(params.get("nombre"));
+            franquicia.setNombre(nuevoNombre);
             franquiciaRepository.save(franquicia);
-            return "se ha cambiado el nombre de la franquicia "+ oldNombre + " a " + params.get("nombre") + "  correctamente";
+            return "se ha cambiado el nombre de la franquicia "+ oldNombre + " a " + nuevoNombre + "  correctamente";
         }
         return "Error al actualizar el nombre, Franquicia no encontrada";
     }

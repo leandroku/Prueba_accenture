@@ -7,8 +7,7 @@ import com.accenture.prueba.DTO.SucursalDTO;
 import com.accenture.prueba.models.Sucursal;
 
 public interface SucursalService {
-    Sucursal crearSucursal(Map<String, String> params);
+    Sucursal crearSucursal(SucursalDTO sucursalDTO);
     List<SucursalDTO> obtenerSucursales();
-    String actualizarNombreSucursal(Map<String, String> params);
-
+    String actualizarNombreSucursal(Long id, String nuevoNombre);
 }

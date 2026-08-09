@@ -50,23 +50,20 @@ Una vez que la aplicación esté corriendo en local (por defecto en el puerto **
 }
 ```
 
-### - Endpoint: Traer todas las Franquicia
+### - Endpoint: Traer todas las Franquicias
 
 **Método:** GET  
 **URL:** `http://localhost:4000/franquicias`  
 **Descripción:** Trae todas las franquicias de la base de datos.
 
-### - Endpoint: Actualiza nombre de una franquicia
+### - Endpoint: Actualiza el nombre de una franquicia
 
 **Método:** PATCH  
-**URL:** `http://localhost:4000/franquicia/updateNombreFranquicia`  
+**URL:** `http://localhost:4000/franquicia/{id}/nombre`  
 **Descripción:** Actualiza el nombre de una franquicia segun el id.  
 **Raw -> JSON**
 ``` JSON
-{
-    "id" : "1",
-    "nombre" : "Urban Style"
-}
+    "Urban Style"
 ```
 ---
 
@@ -81,7 +78,7 @@ Una vez que la aplicación esté corriendo en local (por defecto en el puerto **
     "nombre" : "Sport Life Norte",
     "descripcion" : "Localidad Norte",
     "indActivo" : true,
-    "franquicia" : "1"
+    "idFranquicia" : 1
 }
 ```
 
@@ -91,17 +88,14 @@ Una vez que la aplicación esté corriendo en local (por defecto en el puerto **
 **URL:** `http://localhost:4000/sucursal`  
 **Descripción:** Trae todas las sucursales de la base de datos.
 
-### - Endpoint: Actualiza nombre de una sucursal
+### - Endpoint: Actualiza el nombre de una sucursal
 
 **Método:** PATCH  
-**URL:** `http://localhost:4000/sucursal/updateNombreSucursal`  
+**URL:** `http://localhost:4000/sucursal/{id}/nombre`  
 **Descripción:** Actualiza el nombre de una sucursal segun el id.  
 **Raw -> JSON**
 ``` JSON
-{
-    "id" : "1",
-    "nombre" : "Urban Style Centros"
-}
+"Urban Style Centros"
 ```
 
 ---
@@ -119,7 +113,7 @@ Una vez que la aplicación esté corriendo en local (por defecto en el puerto **
     "precio" : "45000",
     "stock" : "10",
     "indActivo" : true,
-    "sucursal" : 1
+    "idSucursal" : 1
 }
 ```
 
@@ -129,7 +123,7 @@ Una vez que la aplicación esté corriendo en local (por defecto en el puerto **
 **URL:** `http://localhost:4000/producto`  
 **Descripción:** Trae todos los Productos de la base de datos.
 
-### - Endpoint: Traer todos los productos
+### - Endpoint: Eliminar productos
 
 **Método:** DELETE  
 **URL:** `http://localhost:4000/producto/{id}`  
@@ -138,14 +132,11 @@ Una vez que la aplicación esté corriendo en local (por defecto en el puerto **
 ### - Endpoint: Actualiza stock de un Producto
 
 **Método:** PATCH  
-**URL:** `http://localhost:4000/producto/updateStockProducto`  
+**URL:** `http://localhost:4000/producto/{id}/stock`  
 **Descripción:** Actualiza el stock de un producto segun el id.  
 **Raw -> JSON**
 ``` JSON
-{
-    "id" : "1",
-    "stock" : "30"
-}
+30
 ```
 
 ### - Endpoint: Productos con mayor stock de cada sucursal
@@ -157,12 +148,9 @@ Una vez que la aplicación esté corriendo en local (por defecto en el puerto **
 ### - Endpoint: Actualiza nombre de un producto
 
 **Método:** PATCH  
-**URL:** `http://localhost:4000/sucursal/updateNombreSucursal`  
+**URL:** `http://localhost:4000/sucursal/{id}/nombre`  
 **Descripción:** Actualiza el nombre de un producto segun el id.  
 **Raw -> JSON**
 ``` JSON
-{
-    "id" : "1",
-    "nombre" : "Camiseta básica blanca y negro"
-}
+"Camiseta básica blanca y negro"
 ```
