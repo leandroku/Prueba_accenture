@@ -34,7 +34,7 @@ public class ProductoServiceImp implements ProductoService {
     }
 
     @Override
-    public Producto crearProducto(ProductoDTO productoDTO) {
+    public ProductoDTO crearProducto(ProductoDTO productoDTO) {
         Producto producto = new Producto();
         producto.setNombre(productoDTO.getNombre());
         producto.setDescripcion(productoDTO.getDescripcion());
@@ -45,7 +45,7 @@ public class ProductoServiceImp implements ProductoService {
         Sucursal sucursal = sucursalRepository.findById(productoDTO.getIdSucursal()).orElse(null);
         producto.setSucursal(sucursal);
 
-        return productoRepository.save(producto);
+        return new ProductoDTO(productoRepository.save(producto));
     }
 
     @Override

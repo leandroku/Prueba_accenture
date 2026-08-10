@@ -5,11 +5,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.accenture.prueba.DTO.SucursalDTO;
-import com.accenture.prueba.models.Sucursal;
 import com.accenture.prueba.services.Itf.SucursalService;
 
 import java.util.List;
-import java.util.Map;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
@@ -32,7 +30,7 @@ public class SucursalController {
     }
         
     @PostMapping()
-    public Sucursal createSucursal(@RequestBody SucursalDTO sucursalDTO) {
+    public SucursalDTO createSucursal(@RequestBody SucursalDTO sucursalDTO) {
         return sucursalService.crearSucursal(sucursalDTO);
     }
 

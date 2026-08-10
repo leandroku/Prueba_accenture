@@ -1,23 +1,20 @@
 package com.accenture.prueba.DTO;
 
-import com.accenture.prueba.models.Sucursal;
+import com.accenture.prueba.models.Franquicia;
 
-public class SucursalDTO {
-
+public class FranquiciaDTO {
     private Long id;
     private String nombre;
     private String descripcion;
     private Boolean indActivo;
-    private Long idFranquicia;
 
-    public SucursalDTO() {}
+    public FranquiciaDTO() {}
 
-    public SucursalDTO(Sucursal sucursal) {
-        this.id = sucursal.getId();
-        this.nombre = sucursal.getNombre();
-        this.descripcion = sucursal.getDescripcion();
-        this.indActivo = sucursal.getIndActivo();
-        this.idFranquicia = sucursal.getFranquicia().getId();
+    public FranquiciaDTO(Franquicia franquicia) {
+        this.id = franquicia.getId();
+        this.nombre = franquicia.getNombre();
+        this.descripcion = franquicia.getDescripcion();
+        this.indActivo = franquicia.getIndActivo();
     }
 
     public Long getId() {
@@ -51,15 +48,5 @@ public class SucursalDTO {
     public void setIndActivo(Boolean indActivo) {
         this.indActivo = indActivo;
     }
-
-    public Long getIdFranquicia() {
-        return idFranquicia;
-    }
-
-    public void setIdFranquicia(Long idFranquicia) {
-        this.idFranquicia = idFranquicia;
-    }
-
-    
 
 }

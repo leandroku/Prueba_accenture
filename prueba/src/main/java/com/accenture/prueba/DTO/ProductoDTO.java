@@ -12,6 +12,8 @@ public class ProductoDTO {
     private Boolean indActivo;
     private Long idSucursal;
 
+    public ProductoDTO() {}
+
     public ProductoDTO(Producto producto) {
         this.id = producto.getId();
         this.nombre = producto.getNombre();

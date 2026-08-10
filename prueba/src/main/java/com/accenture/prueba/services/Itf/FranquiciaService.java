@@ -2,10 +2,10 @@ package com.accenture.prueba.services.Itf;
 
 import java.util.List;
 
-import com.accenture.prueba.models.Franquicia;
+import com.accenture.prueba.DTO.FranquiciaDTO;
 
 public interface FranquiciaService {
-    Franquicia crearFranquicia(Franquicia franquicia);
-    List<Franquicia> obtenerFranquicias();
+    FranquiciaDTO crearFranquicia(FranquiciaDTO franquicia);
+    List<FranquiciaDTO> obtenerFranquicias();
     String actualizarNombreFranquicia(Long id, String nuevoNombre);
 }

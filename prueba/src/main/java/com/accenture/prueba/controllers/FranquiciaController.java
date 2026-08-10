@@ -1,12 +1,11 @@
 package com.accenture.prueba.controllers;
 
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.accenture.prueba.models.Franquicia;
 import com.accenture.prueba.services.Itf.FranquiciaService;
+import com.accenture.prueba.DTO.FranquiciaDTO;
 
 import java.util.List;
 
@@ -29,12 +28,12 @@ public class FranquiciaController {
     }
 
     @GetMapping()
-    public List<Franquicia> getAllFranquicias() {
+    public List<FranquiciaDTO> getAllFranquicias() {
         return franquiciaService.obtenerFranquicias();
     }
     
     @PostMapping
-    public Franquicia crearFranquicia(@RequestBody Franquicia franquicia) {
+    public FranquiciaDTO crearFranquicia(@RequestBody FranquiciaDTO franquicia) {
         return franquiciaService.crearFranquicia(franquicia);
     }
 

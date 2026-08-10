@@ -1,12 +1,10 @@
 package com.accenture.prueba.controllers;
 
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.accenture.prueba.DTO.ProductoDTO;
-import com.accenture.prueba.models.Producto;
 import com.accenture.prueba.services.Itf.ProductoService;
 
 import java.util.List;
@@ -38,7 +36,7 @@ public class ProductoController {
 
     @PostMapping()
     @ResponseBody
-    public Producto createProducto(@RequestBody ProductoDTO productoDTO) {
+    public ProductoDTO createProducto(@RequestBody ProductoDTO productoDTO) {
         return productoService.crearProducto(productoDTO);
     }
 

@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.accenture.prueba.DTO.FranquiciaDTO;
 import com.accenture.prueba.models.Franquicia;
 import com.accenture.prueba.repositories.FranquiciaRepository;
 import com.accenture.prueba.services.Itf.FranquiciaService;
@@ -16,13 +17,21 @@ public class FranquiciaServiceImp implements FranquiciaService {
     private FranquiciaRepository franquiciaRepository;
 
     @Override
-    public Franquicia crearFranquicia(Franquicia franquicia) {
-        return franquiciaRepository.save(franquicia);
+    public FranquiciaDTO crearFranquicia(FranquiciaDTO franquicia) {
+        Franquicia franquiciaModel = new Franquicia();
+        franquiciaModel.setNombre(franquicia.getNombre());
+        franquiciaModel.setDescripcion(franquicia.getDescripcion());
+        franquiciaModel.setIndActivo(franquicia.getIndActivo());
+
+        Franquicia savedFranquicia = franquiciaRepository.save(franquiciaModel);
+        return new FranquiciaDTO(savedFranquicia);
     }
 
     @Override
-    public List<Franquicia> obtenerFranquicias() {
-        return franquiciaRepository.findAll();
+    public List<FranquiciaDTO> obtenerFranquicias() {
+        return franquiciaRepository.findAll().stream()
+                .map(FranquiciaDTO::new)
+                .toList();
     }
 
     @Override

@@ -22,7 +22,7 @@ public class SucursalServiceImp implements SucursalService {
     private FranquiciaRepository franquiciaRepository;
 
     @Override
-    public Sucursal crearSucursal(SucursalDTO sucursalDTO) {
+    public SucursalDTO crearSucursal(SucursalDTO sucursalDTO) {
         Sucursal sucursal = new Sucursal();
         sucursal.setNombre(sucursalDTO.getNombre());
         sucursal.setDescripcion(sucursalDTO.getDescripcion());
@@ -30,7 +30,7 @@ public class SucursalServiceImp implements SucursalService {
         Franquicia franquicia = franquiciaRepository.findById(sucursalDTO.getIdFranquicia())
                 .orElseThrow(() -> new RuntimeException("Franquicia no encontrada"));
         sucursal.setFranquicia(franquicia);
-        return sucursalRepository.save(sucursal);
+        return new SucursalDTO(sucursalRepository.save(sucursal));
     }
 
     @Override

@@ -45,7 +45,7 @@ Una vez que la aplicación esté corriendo en local (por defecto en el puerto **
 ### - Endpoint: Traer todas las Franquicias
 
 **Método:** GET  
-**URL:** `http://localhost:4000/franquicias`  
+**URL:** `http://localhost:4000/franquicia`  
 **Descripción:** Trae todas las franquicias de la base de datos.
 
 ### - Endpoint: Actualiza el nombre de una franquicia
