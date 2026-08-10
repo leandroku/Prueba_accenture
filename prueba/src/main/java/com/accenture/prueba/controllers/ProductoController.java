@@ -7,9 +7,12 @@ import org.springframework.web.bind.annotation.RestController;
 import com.accenture.prueba.DTO.ProductoDTO;
 import com.accenture.prueba.services.Itf.ProductoService;
 
+import jakarta.validation.Valid;
+
 import java.util.List;
 import java.util.Map;
 
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
@@ -36,8 +39,9 @@ public class ProductoController {
 
     @PostMapping()
     @ResponseBody
-    public ProductoDTO createProducto(@RequestBody ProductoDTO productoDTO) {
-        return productoService.crearProducto(productoDTO);
+    public ResponseEntity<ProductoDTO> createProducto(@Valid @RequestBody ProductoDTO productoDTO) {
+        ProductoDTO creado = productoService.crearProducto(productoDTO);
+        return ResponseEntity.ok(creado);
     }
 
     @DeleteMapping("/{id}")

@@ -2,13 +2,20 @@ package com.accenture.prueba.DTO;
 
 import com.accenture.prueba.models.Producto;
 
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotNull;
+
 public class ProductoDTO {
 
     private Long id;
     private String nombre;
     private String descripcion;
     private Double precio;
+
+    @NotNull(message = "El stock es obligatorio")
+    @Min(value = 0, message = "El stock no puede ser negativo")
     private Integer stock;
+
     private Boolean indActivo;
     private Long idSucursal;
 
