@@ -14,24 +14,16 @@ Expone endpoints para gestionar productos, sucursales y franquicias.
   - Lombok 
   - MySQL Connector/J
 
-  ## Configuración
-
-El proyecto utiliza un archivo `application.properties` para definir la configuración:
-
-```properties
-server.port=4000
-spring.datasource.url=jdbc:mysql://${DB_HOST}:${DB_PORT}/${DB_NAME}
-spring.datasource.username=${DB_USERNAME}
-spring.datasource.password=${DB_PASSWORD}
-spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
-spring.jpa.hibernate.ddl-auto=none
-spring.jpa.database-platform=org.hibernate.dialect.MySQLDialect
-spring.jpa.show-sql=true
-```
 ## Instalación con Docker
-antes de iniciar se deven de remplazar las variables del docker-compose.yml -> environment  por las credenciales envialdas en el archivo txt;
-una vez remplazadas las variables en el docker-compose.yml se debe ejecurtar el sigueinte comendo sobre la carpeta prueba  
-**docker compose up --build**
+- **Configurar variables de entorno**  
+Antes de iniciar, reemplaza las variables definidas en docker-compose.yml → sección **environment** con las credenciales enviadas en el archivo .txt.  
+- **Construir y levantar los contenedores**  
+Desde la carpeta raíz del proyecto (prueba), ejecuta el siguiente comando:
+```Bash
+docker compose up --build
+```
+- **Acceso a la aplicación**  
+Una vez levantados los contenedores, la aplicación estará disponible en: **http://localhost:4000**
 
 ## Pruebas de Endpoints
 Una vez que la aplicación esté corriendo en local (por defecto en el puerto **4000**), puedes probar los endpoints usando **Postman**

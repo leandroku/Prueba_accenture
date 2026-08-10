@@ -12,7 +12,7 @@ import com.accenture.prueba.models.Sucursal;
 @Repository
 public interface SucursalRepository extends JpaRepository<Sucursal, Long> {
 
-@Query("SELECT s FROM Sucursal s WHERE s.franquicia.id = :franquiciaId")
+    @Query("SELECT s FROM Sucursal s WHERE s.franquicia.id = :franquiciaId")
     List<Sucursal> findByFranquiciaId(@Param("franquiciaId") Long idFranquicia);
     
 }
